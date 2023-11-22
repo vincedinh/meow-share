@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import NavLinks from '@/ui/dashboard/navLinks';
-import MeowShareLogo from '@/ui/meowShareLogo';
+import MeowShareLogo from '@/ui/dashboard/meowShareLogo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 // import { signOut } from '@/auth';
 

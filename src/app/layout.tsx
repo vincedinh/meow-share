@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
+import { SessionProvider } from "next-auth/react"
 import { inter } from '@/ui/fonts';
 import '@/ui/globals.css'
-import SideNav from '@/ui/sideNav';
+import SideNav from '@/ui/dashboard/sideNav';
+import { Session } from 'next-auth';
+
 
 export const metadata: Metadata = {
   title: {
@@ -13,16 +16,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  session : Session,
 }) {
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased flex h-screen flex-col md:flex-row md:overflow-hidden`}>
-        <div className="w-full flex-none md:w-64">
-          <SideNav/>
-        </div>
-        <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
+        <SessionProvider session={session}>
+          <div className="w-full flex-none md:w-64">
+            <SideNav/>
+          </div>
+          <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
+        </SessionProvider>
       </body>
     </html>
   )
